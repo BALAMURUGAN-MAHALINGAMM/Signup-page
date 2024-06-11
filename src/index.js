@@ -1,17 +1,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-
+import { BrowserRouter,Routes,Route } from 'react-router-dom';
+import Login from './Login';
+import Signup from './Signup';
+import "./index.css"
+import Loading from './Loading';
+import { useState } from 'react';
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+function App(){
+  const [users, setusers] = useState([
+    {
+        username: "bala",
+        password: "123"
+    }
+])
+  return(
+    <div>
+ <BrowserRouter>
+  <Routes>
+    <Route path='/' element={<Login users={users} setusers={setusers}/>}></Route>
+    <Route path='/Signup' element={<Signup users={users} setusers={setusers}/>}></Route>
+    <Route path='/loading' element={<Loading/>}></Route>
+  </Routes>
+  </BrowserRouter>
+    </div>
+  )
+}
+
+
+root.render (<App/>);
+
+
